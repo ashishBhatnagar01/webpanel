@@ -49,6 +49,10 @@ const CompanyCreate = () => {
       .matches(/^[0-9]+$/, 'Must be only digits')
       .min(10, 'Must be exactly 10 digits')
       .max(10, 'Must be exactly 10 digits'),
+      subagent_id: yup
+      .string()
+      .required()
+      .matches(/^[1-9]+$/, 'Please select a sub-agent')
   });
 
   const validate = async (data) => {
@@ -84,6 +88,7 @@ const CompanyCreate = () => {
       contact_number: contnum,
       subagent_id: subagent,
     };
+    console.log(data)
 
     try {
       setErrors({});
@@ -229,6 +234,8 @@ const CompanyCreate = () => {
               </option>
             ))}
           </select>
+          <div className="text-danger fw-600">{errors?.subagent_id}</div>
+
         </div>
       </div>
       <br />
